@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>自定义checkbox和radio的样式</title>
+  <style type="text/css">
+    input {
+      display: none;
+    }
+
+    .bgc label {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: url(99322cf8c3283e42.png) no-repeat -24px -10px;
+    }
+
+    .bgc label[for*="c"] {
+      background-position: -24px -32px;
+    }
+
+    .bgc input[id="r1"]:checked ~ label[for="r1"] {
+      background-position: -59px -10px;
+    }
+
+    .bgc input[id="r2"]:checked ~ label[for="r2"] {
+      background-position: -59px -10px;
+    }
+
+    .bgc input[id="c1"]:checked ~ label[for="c1"] {
+      background-position: -59px -32px;
+    }
+
+    .bgc input[id="c2"]:checked ~ label[for="c2"] {
+      background-position: -59px -32px;
+    }
+
+    .pseudo-ele label {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .pseudo-ele label[for*="e-c"] {
+      width: 12px;
+      height: 12px;
+      border-radius: 0;
+    }
+    .pseudo-ele input:checked + label {
+      border-color: red;
+    }
+
+    .pseudo-ele input[id*="e-r"]:checked + label:after {
+      content: "";
+      box-sizing: border-box;
+      width: 6px;
+      height: 6px;
+      background-color: #f00;
+      border-radius: 5px;
+      display: block;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+    }
+
+    .pseudo-ele input[id*="e-c"]:checked + label:after {
+      content: "1";
+      color: transparent;
+      box-sizing: border-box;
+      width: 8px;
+      height: 5px;
+      border: 2px solid #f00;
+      border-top: transparent;
+      border-right: transparent;
+      transform: rotate(-30deg);
+      -ms-transform: rotate(-30deg);
+      position: absolute;
+      top: 3px;
+      left: 2px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="bgc">
+    <h1>使用背景图片的方式</h1>
+    <input type="radio" name="radio" id="r1">
+    <label for="r1"></label>
+    <input type="radio" name="radio" id="r2">
+    <label for="r2"></label>
+    <input type="checkbox" id="c1">
+    <label for="c1"></label>
+    <input type="checkbox" id="c2">
+    <label for="c2"></label>
+  </div>
+  <div class="pseudo-ele">
+    <h1>使用伪元素的方式</h1>
+    <input type="radio" name="radio" id="e-r1">
+    <label for="e-r1"></label>
+    <input type="radio" name="radio" id="e-r2">
+    <label for="e-r2"></label>
+    <input type="checkbox" id="e-c1">
+    <label for="e-c1"></label>
+    <input type="checkbox" id="e-c2">
+    <label for="e-c2"></label>
+  </div>
+
+</body>
+</html>
