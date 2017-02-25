@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Context Menu</title>
+  <style type="text/css">
+
+    .wrap {
+      position: relative;
+      margin-top: 200px;
+      margin-left: 400px;
+    }
+
+    .div {
+      width: 300px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+
+    .menu-right,
+    .menu-left,
+    .menu-top {
+      width: 150px;
+      border: 2px solid #555;
+      padding: 0;
+      position: absolute;
+      top: 20px;
+      left: 200px;
+      z-index: 5;
+      background-color: #fff;
+      display: block;
+    }
+
+    ul li {
+      list-style: none;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .menu-right:before,
+    .menu-left:before,
+    .menu-top:before {
+      content: "";
+      box-sizing: border-box;
+      width: 15px;
+      height: 15px;
+      border: 2px solid #555;
+      transform:  rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      position: absolute;
+      top: 10px;
+      left: -9px;
+      z-index: 10;
+      background-color: #fff;
+      border-top: transparent;
+      border-right: transparent;
+    }
+
+    .menu-left {
+      top: 20px;
+      left: -50px;
+    }
+
+    .menu-top {
+      top: -200px;
+      left: 80px;
+    }
+
+    .menu-top:before {
+      top: 188px;
+      left: 70px;
+      border: 2px solid #555;
+      border-left: transparent;
+      border-top: transparent;
+    }
+
+    .menu-left:before {
+      left: 144px;
+      border: 2px solid #555;
+      border-left: transparent;
+      border-bottom: transparent;
+    }
+
+    ul {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="div" id="div">右键点我</div>
+  <ul class="menu" id="menu">
+    <li>选项一</li>
+    <li>选项二</li>
+    <li>选项三</li>
+    <li>选项四</li>
+    <li>选项五</li>
+  </ul>
+</div>
+<script type="text/javascript">
+  var dom = document;
+
+  var div = dom.getElementById('div'),
+      wrap = dom.getElementById('wrap'),
+      menu = dom.getElementById('menu');
+
+  var wrapTop = Math.random()*(window.innerHeight-120);
+  var wrapLeft = Math.random()*(window.innerWidth-300);
+  wrap.style.marginTop = wrapTop + 'px';
+  wrap.style.marginLeft = wrapLeft + 'px';
+
+  function menuPosition() {
+    if (window.innerHeight-wrapTop-div.offsetHeight>150){
+      if(window.innerWidth-wrapLeft-div.offsetWidth>100)
+        {menu.className = 'menu-right';}
+      else
+          {menu.className = 'menu-left';}
+    }
+    else if(wrapTop > 150)
+      menu.className = 'menu-top';
+    else
+      alert('空间不足，菜单无法出现');
+  }
+
+  function main() {
+    div.oncontextmenu = function (e) {
+        menuPosition();
+        return false;
+    };
+
+    dom.onclick = function(e) {
+        menu.className = '';
+    }
+  }
+
+  main();
+</script>
+</body>
+</html>
