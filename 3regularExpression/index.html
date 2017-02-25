@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Regular Expression</title>
+</head>
+<style type="text/css">
+  .wrap {
+    width: 300px;
+    height: 300px;
+    margin: 100px auto;
+    border: 2px solid #555;
+    padding: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  input {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  h3 {
+    margin-bottom: 5px;
+  }
+
+  input[type="submit"] {
+    display: block;
+    width: 80px;
+    color: #fff;
+    font-size: 16px;
+    margin: 50px auto;
+    background-color: #5898c9;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #4878f9;
+  }
+
+  .red {
+    border: 1px solid #f00;
+  }
+
+  p {
+    font-size: 12px;
+    text-align: left;
+    text-indent: 50px;
+  }
+
+  .red + p {
+    color: #f00;
+  }
+
+  .green {
+    border: 1px solid #0f0;
+  }
+
+  .green + p {
+    color: #0f0;
+  }
+
+</style>
+<body>
+  <div class="wrap">
+    <h3>手机号</h3>
+    <input type="text" id="tel">
+    <p class="p-tel"></p>
+    <h3>查看是否存在相邻重复单词</h3>
+    <input type="text" id="words">
+    <p class="p-words"></p>
+    <input type="submit" value="确认">
+  </div>
+  <script type="text/javascript">
+    var dom = document;
+    var input = dom.getElementsByTagName('input'),
+        p = dom.getElementsByTagName('p');
+
+    input[2].onclick = function() {
+      if(/^1[34578]\d{9}$/.test(input[0].value)) {
+        input[0].className = 'green';
+        p[0].innerHTML = '输入正确';
+      }
+      else {
+        input[0].className = 'red';
+        p[0].innerHTML = '输入不合法';
+      }
+
+      if(/^[a-zA-Z ]+$/.test(input[1].value)) {
+        var index = 0;
+        var list = input[1].value.split(' '),
+            newList = [];
+
+        for(var i = 0, len = list.length; i<len; i++) {
+          if(list[i] != '') {
+            newList.push(list[i])
+          }
+        }
+        console.log(newList);
+        for(var i = 0, len = newList.length; i<len; i++) {
+
+          if(newList[i] == (newList[i+1] || newList[i-1])) {
+            index = 1;console.log(i);
+            break;
+          }
+        }
+
+        if (index == 1) {
+            input[1].className = 'green';
+            p[1].innerHTML = '存在相邻相同单词';
+        }
+        else {
+            input[1].className = 'red';
+            p[1].innerHTML = '不存在相邻相同单词';
+        }
+      }
+      else {
+        input[1].className = 'red';
+        p[1].innerHTML = '请输入正确的单词';
+      }
+    }
+  </script>
+</body>
+</html>
