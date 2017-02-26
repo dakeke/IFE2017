@@ -6,101 +6,105 @@
 </head>
 <style type="text/css">
   .wrap {
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
+    margin: 200px auto;
     position: relative;
-  }
-  .frame {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    border-radius: 40px;
-    border: 2px solid #e00;
-    border-bottom: none;
-    animation: rotate 800ms infinite linear;
-  }
-
-  .circle, .circle2 {
-    position: absolute;
-    width: 38px;
-    height: 38px;
-    border-radius: 40px;
-    overflow: hidden;
-    left: 13px;
-    top: 13px;
   }
 
   .circle {
-    opacity: 1;
-    background-color: #89abdd;
-    animation: second-half-hide 1.6s steps(1, end) infinite;
-  }
-
-  .circle2 {
-    opacity: 0;
-    background-color: #4b86db;
-    animation: second-half-hide 1.6s steps(1, end) infinite;
-  }
-
-  .c1,.c2,.c3 {
     position: absolute;
-    width: 50%;
-    height: 100%;
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    border: 2px solid #4b86db;
+    border-top-color: #fff;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate{
+    0% {
+    transform: rotate(360deg);
+    }
+    100% {
+    transform: rotate(0deg);
+    }
+  }
+
+  .circle1,.circle1 {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+    left: 11px;
+    top: 11px;
+    background: #4b86db;
   }
 
   .c1 {
-    border-radius: 40px 0 0 40px;
-    background-color: #4b86db;
-    transform-origin: right center;
-    animation: rotate 800ms infinite linear;
-    left: 0; top: 0;
+    position: absolute;
+    width: 38px;
+    height: 19px;
+    top: 19px;
+    background: #4b86db;
+    border-radius: 0 0 38px 38px;
+    z-index: 10;
+    -webkit-transform: rotate(45deg);
+    -webkit-transform-origin: 50% 0;
+    animation: c1 1s infinite linear;
   }
-  .c2 { border-radius: 0 40px 40px 0;
-    background-color: #4b86db;
-    animation: second-half-hide 800ms steps(1, end) infinite;
-    left: 50%; top: 0; opacity: 1;
-  }
-  .c3 {
-    border-radius: 40px 0 0 40px;
-    background-color: #89abdd;
-    animation: second-half-show 800ms steps(1, end) infinite;
-    left: 0; top: 0; opacity: 0;
-  }
-  .circle2 .c1, .circle2 .c2 {
-  background-color: #89abdd;
-}
-.circle2 .c3 {
-  background-color: #4b86db;
-}
 
-@keyframes rotate{
-  0% {
-    transform: rotate(360deg);
+  @keyframes c1 {
+    0% {
+      -webkit-transform: rotate(45deg);
+    }
+    50% {
+      -webkit-transform: rotate(-90deg);
+    }
+    100%{
+      -webkit-transform: rotate(-90deg);
+    }
   }
-  100% {
-    transform: rotate(0deg);
+  .c2,.c3 {
+    position: absolute;
+    width: 19px;
+    height: 38px;
+    background: #89abdd;
+    border-radius: 38px 0 0 38px;
   }
-}
-@keyframes second-half-hide {
-  0%        { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-@keyframes second-half-show {
-  0%        { opacity: 0; }
-  50%, 100% { opacity: 1; }
-}
+
+  .c2 {
+    -webkit-transform-origin: 100% 50%;
+    animation: c2 1s infinite linear;
+  }
+
+  @keyframes c2 {
+
+    0% {
+      z-index: 0;
+      -webkit-transform: rotate(0deg);
+    }
+    49.9% {
+      z-index: 0;
+      -webkit-transform: rotate(0deg);
+    }
+    50% {
+      z-index: 20;
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      z-index: 20;
+      -webkit-transform: rotate(-180deg);
+    }
+
+  }
 
 </style>
 <body>
   <div class="wrap">
-    <div class="frame"></div>
-    <div class="circle">
-      <div class="c1"></div>
-      <div class="c2"></div>
-      <div class="c3"></div>
-    </div>
-    <div class="circle2">
+    <div class="circle"></div>
+    <div class="circle1">
       <div class="c1"></div>
       <div class="c2"></div>
       <div class="c3"></div>
