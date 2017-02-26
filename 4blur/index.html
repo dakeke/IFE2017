@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>模糊、文字流光效果</title>
+</head>
+<style type="text/css">
+.wrap {
+  width: 600px;
+  height: 400px;
+  margin: 100px auto;
+  position: relative;
+}
+
+img {
+  width: 600px;
+  height: 400px;
+  animation: blur 8s infinite;
+}
+
+@keyframes blur {
+
+  0% {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+  }
+  20% {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    -ms-filter: blur(0);
+  }
+
+  30% {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+  }
+
+  100% {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+  }
+}
+
+p,a {
+  background: -webkit-linear-gradient(left,#1c97ae,#3437f3 35%,#1caaae 50%,#f00 75%,#0f0);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  font: bold 20px sans-serif;
+  color: transparent;
+  animation: show 8s infinite;
+}
+
+a {
+  text-decoration: none;
+}
+
+@keyframes show {
+  0% {
+    background: none;
+  }
+
+  12% {
+  background-position: 0 0;
+  }
+
+  24% {
+  background-position: 50% 0;
+  }
+
+  60% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.start {
+  position: absolute;
+  top: 90px;
+  left: 140px;
+  width: 320px;
+  height: 220px;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.start:after {
+  content: "";
+  box-sizing: border-box;
+  border: 5px solid #fff;
+  border-left: none;
+  border-right: none;
+  width: 0;
+  height: 220px;
+  position: absolute;
+  top: 0px;
+  left: 110px;
+  animation: borderBT 8s infinite;
+}
+
+@keyframes borderBT {
+  0% {
+    width: 0;
+
+  }
+  35% {
+    width: 0;
+  }
+  36% {
+    width: 100px;
+    left: 110px;
+  }
+  60% {
+    width: 320px;
+    left: 0;
+  }
+  100% {
+    width: 320px;
+    left: 0;
+  }
+}
+
+.start:before {
+  content: "";
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  border-bottom: none;
+  border-top: none;
+  width: 320px;
+  height: 0;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  animation: borderRL 8s infinite;
+}
+
+@keyframes borderRL {
+  0% {
+    height: 0;
+  }
+  35% {
+    height: 0;
+  }
+  36% {
+    height: 50px;
+    top: 50px;
+  }
+  60% {
+    height: 220px;
+    top: 0;
+  }
+  100% {
+    height: 220px;
+    top: 0;
+  }
+
+}
+
+
+
+</style>
+<body>
+  <div class="wrap">
+    <img src="iu.jpg">
+    <div class="start">
+      <p>欢迎参加百度前端技术学院</p>
+      <p><a href="#">点击报名</a></p>
+    </div>
+  </div>
+</body>
+</html>
